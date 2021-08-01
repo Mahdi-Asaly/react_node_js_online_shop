@@ -1,10 +1,9 @@
 import './App.css';
-import data from './data'
 import React from 'react'
 import { BrowserRouter, Route , Link } from 'react-router-dom';
-import AdminScreen from './Screens/AdminScreen'
-import HomeScreen from './Screens/HomeScreen';
-import ProductScreen from './Screens/ProductScreen';
+import AdminScreen from './screens/AdminScreen'
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 function App() {
   
   const openMenu = () =>{
@@ -26,7 +25,6 @@ function App() {
            </div>
            <div className="header-links">
                <a href="cart.html">My Cart </a>
-               
             </div>
         </header>
         <aside className="sidebar">
