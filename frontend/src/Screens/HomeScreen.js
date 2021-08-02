@@ -6,17 +6,19 @@ import axios from 'axios';
 function HomeScreen (props){
     const productList = useSelector(state=> state.productList);
     const { products, loading , error } = productList;
-    const disptach = useDispatch();
+    const dispatch = useDispatch();
     //fetching data from server
     useEffect(()=>{
-        disptach(listProducts());
+        dispatch(listProducts());
         return ()=>{
 
         };
     },[])
 
 
-
+    const handlePayment= (item)=>{
+    }
+    
     return loading? <div>loading..</div>:error ? <div>{error}</div>: <div>    
 
     <ul className="products">
@@ -32,7 +34,7 @@ function HomeScreen (props){
                 </div>
             <div className="product-description">{product.description}</div>
             <div className="product-price">${product.price}</div>
-            <button className="pay-button">Buy</button>
+            <button className="pay-button" onClick={handlePayment(product.name)}>Buy</button>
             </div> 
             </li>
         )

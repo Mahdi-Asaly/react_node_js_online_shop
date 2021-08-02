@@ -192,3 +192,35 @@ a:hover {
   border: 0.1rem #404040 solid;
   background-color: rgb(12, 200, 12);
 }
+.details-action li .out-of-stock {
+  color: red;
+  font-size: 1.5rem;
+}
+.dd-wrapper {
+  position: fixed;
+  transform: translateX(-30rem);
+  transition: ease-in 1s;
+  width: 30rem;
+  background-color: rgb(72, 7, 202);
+  height: 100%;
+  margin-top: 2rem;
+  max-height: 36rem;
+}
+.dd-wrapper.open {
+  border: 0.1rem #0000 solid;
+  width: 6rem;
+  height: 4rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: -2.5rem;
+  padding-top: 0;
+  right: -300px;
+}
+
+.dd-list-item {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+}

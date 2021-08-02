@@ -1,57 +1,53 @@
-import React from 'react';
-import './dropdown.scss';
-
-export default function Dropdown() {
+import React, {useState} from 'react';
+import '../index.css';
+function Dropdown({ title, items, multiSelect= false}){
+    const [open , setOpen] = useState(false);
+    const [selection, setSelection] = useState([]);
+    const [Qnty, setQnty] = useState(0);
+    const toggle = ()=> {
+        if(open){
+          document.querySelector(".dd-wrapper").classList.add("open");
+            
+        }
+        else{
+            document.querySelector(".dd-wrapper").classList.remove("open");
+        }
+        setOpen(!open);
+    }
+    function handleOnClick(item){
+        
+    }
 
     return (
-        <div>
-<nav>
-  <div class="container">
+        <div className="dd-wrapper">
+            <div 
+            tabIndex={0}
+             className="dd-header"
+              role="button" 
+              onKeyPress={()=>toggle(!open)}
+            onClick={()=>toggle(!open)}>
 
-    <ul class="navbar-right">
-      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>
-    </ul> 
-  </div> 
-</nav>
-
-
-<div class="container">
-  <div class="shopping-cart">
-    <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
-      <div class="shopping-cart-total">
-        <span class="lighter-text">Total:</span>
-        <span class="main-color-text">$2,229.97</span>
-      </div>
-    </div> 
-
-    <ul class="shopping-cart-items">
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-        <span class="item-name">Sony DSC-RX100M III</span>
-        <span class="item-price">$849.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
-
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-        <span class="item-name">KS Automatic Mechanic...</span>
-        <span class="item-price">$1,249.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
-
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-        <span class="item-name">Kindle, 6" Glare-Free To...</span>
-        <span class="item-price">$129.99</span>
-        <span class="item-quantity">Quantity: 01</span>
-      </li>
-    </ul>
-    <div class="button">Checkout</div>
-  </div> 
-</div>
-</div>
+            <div className="dd-header_title">
+                <p className="dd-header_title--bold">{title}</p>
+            </div>
+            <div className="dd-header_action">
+                <p>{open?'Close': 'Cart-'+Qnty}</p>
+            </div>
+            {open && (
+                <ul className="dd-list">
+                    {
+                     items.map(item=>(
+                        <li className="dd-list-item" key={item.id}>
+                            <span>{item.name}</span>
+                            
+                            <span>{item.price}</span>
+                        </li>
+                    ))}
+                 <button className="pay-button" onClick={()=>handleOnClick({})}>Pay</button>
+                </ul>
+            )}
+        </div>
+        </div>
     )
 }
-
-
+export default Dropdown;

@@ -4,6 +4,8 @@ import { BrowserRouter, Route , Link } from 'react-router-dom';
 import AdminScreen from './screens/AdminScreen'
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
+import Dropdown from './Dropdown/Dropdown';
 function App() {
   
   const openMenu = () =>{
@@ -12,7 +14,20 @@ function App() {
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open");
   }
-  
+  const items=[
+    {
+        name:'elem1',
+        price: '5$'
+    },
+    {
+        name:'elem2',
+        price: '5$'
+    },
+    {
+        name:'elem3',
+        price: '5$'
+    },  
+]
   return (
     <BrowserRouter>
     <div className="grid-container">
@@ -24,7 +39,7 @@ function App() {
                <Link to="/">Online Shop</Link>
            </div>
            <div className="header-links">
-               <a href="cart.html">My Cart </a>
+               <Dropdown items={items}/>
             </div>
         </header>
         <aside className="sidebar">
@@ -48,6 +63,7 @@ function App() {
 
               <Route path="/" exact={true} component={HomeScreen}/>
               <Route path="/product/:id" component={ProductScreen}/>
+              <Route path="/cart/:id" component={CartScreen}/>
               <Route path="/AdminScreen" exact={true} component={AdminScreen}/>
 
         </div>
