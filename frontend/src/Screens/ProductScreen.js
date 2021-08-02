@@ -30,7 +30,6 @@ export default function ProductScreen(props) {
                 <div className="details">
                 <div className="details-image">
                     <img src={product.urlImg} alt="product">
-
                     </img>
                 </div>
                 <div className="details-info">

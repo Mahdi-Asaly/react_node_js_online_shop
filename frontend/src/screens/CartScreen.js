@@ -3,11 +3,12 @@ import addToCart from '../actions/cartActions';
 import {useSelector,useDispatch} from 'react-redux';
 
 function CartScreen(props){
+    const cart = useSelector(state => state.cart);
+    const {cartItems} = cart;
+
     const productId = props.match.params.id;
     const qty = props.location.search? Number(props.location.search.split("=")[1]):1;
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart);
-    const {cartItems} = cart;
 
     useEffect(()=>{
         if(productId)
@@ -24,44 +25,48 @@ function CartScreen(props){
                         Shopping Cart
                     </h3>
                     <div>
-                    Price:
-                </div>
+                    Price
+                    </div>
                 </li>
-                <div>{
+                {
                     cartItems.length === 0 ?
                     <div>
                         cart is empty
                     </div>
                     :
                     cartItems.map(item=> 
-                        <div>
-                            <img src={item.urlImg} alt="product"/>
-                            <div className="cart-name">
-                                <div>
-                                    {item.name}
+                        <li> 
+                               <div className="cart-image">
+                                    <img src={item.urlImg} className="" alt="product"/>
                                 </div>
-                                <div>
-                                    Qty:
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                <div className="cart-name">
+                                    <div>
+                                        {item.name}
+                                    </div>
+                                    <div>
+                                        Qty:
+                                        <select>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                {item.price}
-                            </div>
-                        </div>
+                                <div className="cart-price"> 
+                                    {item.price}$
+                                </div>
+                        </li>
                         )
                      }
-                </div>
-                
-                
             </ul>
         </div>
         <div className="cart-action">
-            
+            <h3>
+                subTotal({cartItems.reduce((a,c)=>a+c.qty,0)} items)
+                :
+            ${cartItems.reduce((a,c) =>a + c.price* c.qty, 0)}
+            </h3>
+            <button className= "button primary" disabled={cartItems.length===0}>Proceed to CheckOut</button>
         </div>
     </div>
 }
