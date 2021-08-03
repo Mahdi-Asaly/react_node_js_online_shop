@@ -15,9 +15,6 @@ function HomeScreen (props){
         };
     },[])
 
-
-    const handlePayment= (item)=>{
-    }
     
     return loading? <div>loading..</div>:error ? <div>{error}</div>: <div>    
 
@@ -34,7 +31,7 @@ function HomeScreen (props){
                 </div>
             <div className="product-description">{product.description}</div>
             <div className="product-price">${product.price}</div>
-            <button className="pay-button" onClick={handlePayment(product.name)}>Buy</button>
+            <button className="pay-button">Buy</button>
             </div> 
             </li>
         )
