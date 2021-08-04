@@ -12,7 +12,6 @@ function CartScreen(props){
     const qty = props.location.search? Number(props.location.search.split("=")[1]):1;
     const dispatch = useDispatch();
     const removeFromCartHandler = (productId) =>{
-        console.log('removing:' + productId)
         dispatch(removeFromCart(productId));
     }
     useEffect(()=>{
@@ -20,8 +19,10 @@ function CartScreen(props){
         {
             dispatch(addToCart(productId,qty));
         }
-    },[])
-
+    },[]);
+    const checkoutHandler = () =>{
+        props.history.push("/redirect=shipping");
+    }
     return <div className="cart">
         <div className="cart-list">
             <ul className="cart-list-container">
@@ -40,7 +41,7 @@ function CartScreen(props){
                     </div>
                     :
                     cartItems.map(item=> 
-                        <li> 
+                        <li key={item.product}> 
                                <div className="cart-image">
                                     <img src={item.urlImg} className="" alt="product"/>
                                 </div>
@@ -52,10 +53,10 @@ function CartScreen(props){
                                     </div>
                                     <div>
                                         Qty:
-                                        <select>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                        <select value={item.qty} onChange={(e)=> dispatch(addToCart(item.product, e.target.value))}>
+                                            {[...Array(item.countInStock).keys()].map(x=>
+                                                <option key={x+1} value={x+1}>{x+1}</option>)
+                                            }
                                         </select>
                                         <button type="button" className="button" onClick={()=>removeFromCartHandler(item.product)}>
                                             Delete
@@ -76,7 +77,7 @@ function CartScreen(props){
                 :
             ${cartItems.reduce((a,c) =>a + c.price* c.qty, 0)}
             </h3>
-            <button className= "button primary" disabled={cartItems.length===0}>Proceed to CheckOut</button>
+            <button className= "button primary full-width" onClick={checkoutHandler} disabled={cartItems.length===0}>Proceed to CheckOut</button>
         </div>
     </div>
 }

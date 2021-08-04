@@ -37,7 +37,7 @@ function Dropdown({ title, items, multiSelect= false}){
                 <ul className="dd-list">
                     {
                      items.map(item=>(
-                        <li className="dd-list-item" key={item.id}>
+                        <li className="dd-list-item" key={item.product}>
                             <span>{item.name}</span>
                             
                             <span>{item.price}</span>
