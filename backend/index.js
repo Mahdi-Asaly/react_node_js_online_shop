@@ -21,12 +21,12 @@ app.get("/api/products/:id", (req,res)=>{
         res.status(404).send({msg: "Product not exists"});
 });
 
-app.use('/data', dataRoutes);
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
+app.use('/data', dataRoutes);
 
 const CONNECTION_URL = "mongodb+srv://myprojects:Bb123123@cluster0.wwybj.mongodb.net/productsDB?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;

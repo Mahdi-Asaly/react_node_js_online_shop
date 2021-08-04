@@ -4,7 +4,9 @@ import { BrowserRouter, Route , Link } from 'react-router-dom';
 import AdminScreen from './screens/AdminScreen'
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import ProductsScreen from './screens/ProductsScreen';
 import CartScreen from './screens/CartScreen';
+
 import Dropdown from './Dropdown/Dropdown';
 function App() {
   
@@ -28,6 +30,9 @@ function App() {
         price: '5$'
     },  
 ]
+
+  // <Dropdown items={items}/>
+
   return (
     <BrowserRouter>
     <div className="grid-container">
@@ -39,7 +44,6 @@ function App() {
                <Link to="/">Online Shop</Link>
            </div>
            <div className="header-links">
-               <Dropdown items={items}/>
             </div>
         </header>
         <aside className="sidebar">
@@ -60,7 +64,7 @@ function App() {
         <main className="main">
             <div className="content">
               
-
+              <Route path="/products" exact={true} component={ProductsScreen}/>
               <Route path="/" exact={true} component={HomeScreen}/>
               <Route path="/product/:id" component={ProductScreen}/>
               <Route path="/cart/:id" component={CartScreen}/>
