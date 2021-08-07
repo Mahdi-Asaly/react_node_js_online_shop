@@ -16,20 +16,7 @@ function App() {
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open");
   }
-  const items=[
-    {
-        name:'elem1',
-        price: '5$'
-    },
-    {
-        name:'elem2',
-        price: '5$'
-    },
-    {
-        name:'elem3',
-        price: '5$'
-    },  
-]
+
 
   // <Dropdown items={items}/>
 
@@ -42,8 +29,10 @@ function App() {
                &#9776; 
                </button>
                <Link to="/">Online Shop</Link>
+               <Link to="/products"> Admin </Link>
            </div>
            <div className="header-links">
+           <Dropdown/>
             </div>
         </header>
         <aside className="sidebar">

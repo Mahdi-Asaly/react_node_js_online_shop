@@ -18,7 +18,6 @@ export default function ProductScreen(props) {
     const handleAddToCart= ()=>{
         props.history.push("/cart/" + props.match.params.id+"?qty="+ qty)
     }
-    console.log(product);
     return (
         <div > 
             <div className="back-to-home">

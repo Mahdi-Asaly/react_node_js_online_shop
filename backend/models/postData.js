@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
-    _id: String,
     name: String,
     urlImg: String,
     description: String,
@@ -8,6 +7,6 @@ const postSchema = mongoose.Schema({
     countInStock: String
 });
 
-const PostData = mongoose.model('PostData', postSchema);
+const PostData = mongoose.model('products', postSchema);
 
 export default PostData;

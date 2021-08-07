@@ -18,6 +18,8 @@ import {
 import axios from 'axios';
 import Axios from 'axios';
 
+
+
 const listProducts = (
   category = '',
   searchKeyword = '',
@@ -42,20 +44,13 @@ const listProducts = (
 const saveProduct = (product) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
-
+    console.log('product: '+product.description);
     if (!product._id) {
-      const { data } = await Axios.post('/api/products', product, {
-
-      });
+      const { data } = await Axios.post('/api/products', product);
       dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
     } else {
       const { data } = await Axios.put(
-        '/api/products/' + product._id,
-        product,
-        {
-
-        }
-      );
+        '/api/products/' + product._id,product);
       dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -73,7 +68,7 @@ const detailsProduct = (productId) => async (dispatch) => {
   }
 };
 
-const deleteProdcut = (productId) => async (dispatch, getState) => {
+const deleteProduct = (productId) => async (dispatch, getState) => {
   try {
 
     dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
@@ -108,6 +103,6 @@ export {
   listProducts,
   detailsProduct,
   saveProduct,
-  deleteProdcut,
+  deleteProduct,
   saveProductReview,
 };

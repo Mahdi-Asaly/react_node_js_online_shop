@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
   saveProduct,
   listProducts,
-  deleteProdcut,
+  deleteProduct,
 } from '../actions/productActions';
 
 function ProductsScreen(props) {
@@ -13,10 +13,8 @@ function ProductsScreen(props) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [urlImg, setImage] = useState('');
-  const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [description, setDescription] = useState('');
-  const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
 
@@ -52,7 +50,6 @@ function ProductsScreen(props) {
     setPrice(product.price);
     setDescription(product.description);
     setImage(product.urlImg);
-    setCategory(product.category);
     setCountInStock(product.countInStock);
   };
   const submitHandler = (e) => {
@@ -61,36 +58,21 @@ function ProductsScreen(props) {
       saveProduct({
         _id: id,
         name,
-        price,
         urlImg,
-        countInStock,
         description,
+        price,
+        countInStock,
       })
     );
   };
+
+
+
   const deleteHandler = (product) => {
-    dispatch(deleteProdcut(product._id));
+    alert(product._id)
+    dispatch(deleteProduct(product._id));
   };
-  const uploadFileHandler = (e) => {
-    const file = e.target.files[0];
-    const bodyFormData = new FormData();
-    bodyFormData.append('image', file);
-    setUploading(true);
-    axios
-      .post('/api/uploads', bodyFormData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        setImage(response.data);
-        setUploading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setUploading(false);
-      });
-  };
+
   return (
     <div className="content content-margined">
       <div className="product-header">
@@ -122,6 +104,16 @@ function ProductsScreen(props) {
                 ></input>
               </li>
               <li>
+                <label htmlFor="name">url Image</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={urlImg}
+                  id="name"
+                  onChange={(e) => setImage(e.target.value)}
+                ></input>
+              </li>             
+              <li>
                 <label htmlFor="price">Price</label>
                 <input
                   type="text"
@@ -131,18 +123,7 @@ function ProductsScreen(props) {
                   onChange={(e) => setPrice(e.target.value)}
                 ></input>
               </li>
-              <li>
-                <label htmlFor="image">Image</label>
-                <input
-                  type="text"
-                  name="image"
-                  value={urlImg}
-                  id="image"
-                  onChange={(e) => setImage(e.target.value)}
-                ></input>
-                <input type="file" onChange={uploadFileHandler}></input>
-                {uploading && <div>Uploading...</div>}
-              </li>
+
 
               <li>
                 <label htmlFor="countInStock">CountInStock</label>
@@ -189,8 +170,9 @@ function ProductsScreen(props) {
             <tr>
               <th>ID</th>
               <th>Name</th>
+              <th>urlImg</th>
               <th>Price</th>
-              <th>Category</th>
+              <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -199,8 +181,9 @@ function ProductsScreen(props) {
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
+                <td>{product.urlImg}</td>
                 <td>{product.price}</td>
-                <td>{product.category}</td>
+                <td>{product.description}</td>
                 <td>
                   <button className="button" onClick={() => openModal(product)}>
                     Edit
