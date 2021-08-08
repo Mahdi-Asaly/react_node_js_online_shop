@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import dataRoutes from './routes/data.js';
+import paymentRoutes from './routes/payments.js';
+import recordRoutes from './routes/records.js';
 
 const app = express();
 
@@ -11,6 +13,9 @@ app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 app.use('/api/products',dataRoutes);
+app.use('/api/payments',paymentRoutes);
+app.use('/api/records',recordRoutes);
+app.use('/api/topPayments',paymentRoutes);
 
 /*app.get("/api/products/:id", (req,res)=>{
     const productId = req.params.id;

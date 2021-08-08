@@ -2,11 +2,16 @@ import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
 import { listProducts} from '../actions/productActions';
-import axios from 'axios';
+
 function HomeScreen (props){
     const productList = useSelector(state=> state.productList);
     const { products, loading , error } = productList;
+
+    const cart = useSelector(state => state.cart);
+    const {cartItems} = cart;
+
     const dispatch = useDispatch();
+
     //fetching data from server
     useEffect(()=>{
         dispatch(listProducts());
@@ -15,6 +20,10 @@ function HomeScreen (props){
         };
     },[])
 
+
+    const handleAddToCart = (id,name) => {
+        props.history.push("/cart/" + id+"?qty="+ 1)
+      };
     
     return loading? <div>loading..</div>:error ? <div>{error}</div>: <div>    
 
@@ -31,7 +40,9 @@ function HomeScreen (props){
                 </div>
             <div className="product-description">{product.description}</div>
             <div className="product-price">${product.price}</div>
-            <button className="pay-button">Buy</button>
+            <button className="pay-button" id={product._id}
+             onClick={() => handleAddToCart(product._id,product.name)}>Add To Cart
+           </button>
             </div> 
             </li>
         )

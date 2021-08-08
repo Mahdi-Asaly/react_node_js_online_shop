@@ -1,13 +1,17 @@
 import './App.css';
 import React from 'react'
 import { BrowserRouter, Route , Link } from 'react-router-dom';
-import AdminScreen from './screens/AdminScreen'
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProductsScreen from './screens/ProductsScreen';
 import CartScreen from './screens/CartScreen';
-
+import StatsScreen from './screens/StatsScreen';
 import Dropdown from './Dropdown/Dropdown';
+import store from './store';
+import { Provider } from 'react-redux';
+
+
+
 function App() {
   
   const openMenu = () =>{
@@ -17,10 +21,12 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   }
 
-
+  const state = store.getState();
   // <Dropdown items={items}/>
 
   return (
+    <Provider store={store}>
+
     <BrowserRouter>
     <div className="grid-container">
         <header className="header">
@@ -29,24 +35,23 @@ function App() {
                &#9776; 
                </button>
                <Link to="/">Online Shop</Link>
-               <Link to="/products"> Admin </Link>
            </div>
            <div className="header-links">
-           <Dropdown/>
+           <Dropdown _items={store.cart}/>
             </div>
         </header>
         <aside className="sidebar">
           <button className="sidebar-close-button" onClick={closeMenu}>x</button>
-          <h3>Pages</h3>
-          <ul>
+          <ul className="bar-link">
             <li>
-              Admin
+              <Link className="link-products" to="/products">Admin</Link>
             </li>
             <li>
-              Home
+              <Link className="link-home"  to="/">Home</Link>
             </li>
             <li>
-              Stats
+            <Link className="link-stats"  to="/stats">Stats</Link>
+
             </li>
             </ul>
         </aside>
@@ -57,7 +62,7 @@ function App() {
               <Route path="/" exact={true} component={HomeScreen}/>
               <Route path="/product/:id" component={ProductScreen}/>
               <Route path="/cart/:id" component={CartScreen}/>
-              <Route path="/AdminScreen" exact={true} component={AdminScreen}/>
+              <Route path="/stats" component={StatsScreen}/>
 
         </div>
         
@@ -67,6 +72,7 @@ function App() {
         </footer>
     </div>
     </BrowserRouter>
+    </Provider>
   );
 }
 

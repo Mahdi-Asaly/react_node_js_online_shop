@@ -241,6 +241,13 @@ a:hover {
   border-radius: 0.5rem;
   padding: 1rem;
 }
+.cart-action-nav {
+  flex: 1 1 20rem;
+  background-color: rgb(72, 7, 202);
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
 .cart-list-container {
   padding: 0;
   list-style-type: none;
@@ -265,6 +272,7 @@ a:hover {
 .cart-image {
   flex: 1 1;
 }
+
 .cart-name {
   flex: 8 1;
 }
@@ -278,4 +286,85 @@ button {
 }
 .full-width {
   width: 100%;
+}
+.bar-link li:first-child {
+  border: none;
+  border-top: 0.1rem #808080 solid;
+}
+.bar-link li {
+  display: flex;
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  font-size: 3rem;
+  border-top: 0.1rem #808080 solid;
+}
+.link-products {
+  color: white;
+}
+.link-home {
+  color: white;
+}
+.link-stats {
+  color: white;
+}
+.top-sel-payment {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: stretch;
+  border: #404040 solid;
+  align-items: center;
+}
+
+.past-days-sel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: stretch;
+  border: #404040 solid;
+  align-items: center;
+}
+
+.cart-title-bar:hover {
+  color: yellow;
+  cursor: pointer;
+}
+.close-title-bar {
+  color: red;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 2rem;
+}
+.container {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.unique-sel {
+  display: flex;
+  flex-direction: column;
+  border: #404040 solid;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+.gaps {
+  border: #404040 solid 1rem;
+  align-content: center;
+  width: 90%;
+}
+.container li {
+  list-style-type: none;
+}
+.details-top-sel {
+  color: red;
+}
+.top-sel-payment li {
+  list-style-type: none;
 }
