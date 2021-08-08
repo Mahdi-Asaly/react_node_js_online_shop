@@ -25,6 +25,12 @@ app.use('/api/topPayments',paymentRoutes);
     else
         res.status(404).send({msg: "Product not exists"});
 });*/
+
+
+app.get('/', (req,res)=>{
+    res.send("Welcome to My Online Shop API");
+})
+
 const CONNECTION_URL = "mongodb+srv://myprojects:Bb123123@cluster0.wwybj.mongodb.net/productsDB?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
