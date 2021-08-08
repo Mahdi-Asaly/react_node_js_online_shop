@@ -1,7 +1,7 @@
 {
   "name": "shop-online",
   "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "online shop",
   "main": "index.js",
   "dependencies": {
     "abab": "^2.0.5",
@@ -1041,7 +1041,7 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+    "start": "nodemon backend/server.js"
   },
   "author": "",
   "license": "ISC"
