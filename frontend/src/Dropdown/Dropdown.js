@@ -76,13 +76,10 @@ function Dropdown(){
             soldAmount,
             date:new Date()
         }))
-        removeFromCartHandler();
 
        }
 
-       const removeFromCartHandler = (productId) =>{
-        dispatch(removeFromCart(productId));
-       }
+
     };
     return <div> {!open?  <div className="cart-title-bar" onClick={handleCart}>Cart-{cartItems.length}</div>
     :
