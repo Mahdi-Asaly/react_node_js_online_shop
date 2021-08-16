@@ -76,7 +76,6 @@ function Dropdown(){
             soldAmount,
             date:new Date()
         }))
-
        }
 
 
